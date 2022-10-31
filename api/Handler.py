@@ -1,10 +1,11 @@
+import os
 from flask import Flask, request, Response
 from rossmann.Rossmann import Rossmann
 import pickle
 
 
 #loading model
-model=pickle.load(open(r'C:\Users\claud\Desktop\ds\ds_producao\api\rossmann\model\xgb_tuned.pkl','rb'))
+model=pickle.load(open(r'C:\Users\User\Desktop\git\ds\model\xgb_tuned.pkl','rb'))
 
 #initializa API
 app=Flask(__name__)
@@ -40,4 +41,5 @@ def rossmann_predict():
         return Response ('{}', status =200, mimetype='applycation/json')
 
 if __name__ == '__main__':
-    app.run( '192.168.0.112:5000' )
+    port = os.environ.get('PORT',5000)
+    app.run( host='0.0.0.0': port=port )
